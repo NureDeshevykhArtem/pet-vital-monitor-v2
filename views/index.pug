@@ -2,43 +2,103 @@ extends layout
 
 block content
 
-  form(action='./addTask' method='POST' class='form-registration')
+  // Форма добавления нового питомца
+  form(action='/pet', method='POST', class='form-registration')
     div(class='row my-3')
-        div(class='col-md-2 align-bottom')
-          label(for="taskName" class='fs-5') New task
-        div(class='col-md-8')
-          input(class="form-control form-control-sm" type="text" name='taskName', placeholder="Enter new task here" )
-        div(class='col-md-2 text-end')
-          button(class='btn btn-success btn-sm' type='submit') Add task
+      div(class='col-md-2 align-bottom')
+        label(for="petName", class='fs-5') New Pet
+      div(class='col-md-8')
+        input(class="form-control form-control-sm", type="text", name='petName', placeholder="Enter new pet name here" )
+      div(class='col-md-2 text-end')
+        button(class='btn btn-success btn-sm', type='submit') Add Pet
 
-
-  h5(class='my-2') Current tasks
-
+  // Заголовок и таблица для модели Pet
+  h5(class='my-2') Pet Information
   div(class='row mb-3 border-bottom border-3')
-    div(class='col-md-6 fw-bold') Task
-    div(class='col-md-2 fw-bold') Created
-    div(class='col-md-4 fw-bold') Action
-
-  each task in currentTasks
+    div(class='col-md-1 fw-bold') ID
+    div(class='col-md-2 fw-bold') Name
+    div(class='col-md-2 fw-bold') Species
+    div(class='col-md-2 fw-bold') Breed
+    div(class='col-md-2 fw-bold') Birthday
+    div(class='col-md-2 fw-bold') Gender
+    div(class='col-md-1 fw-bold') Actions
+  each pet in pets
     div(class='row mb-2')
-      div(class='col-sm-6') #{task.taskName}
-      div(class='col-sm-2') #{format(task.createDate, "yyyy-MM-dd")}
-      div(class='col-sm-2')
-        form(action='./completeTask' method='POST' class='form-registration')
-          input(type='hidden' name='_id' value=`${task._id}`)
-          button(class='btn btn-primary btn-sm mx-1' type='submit') Complete
-      div(class='col-sm-2')
-        form(action='./deleteTask' method='POST' class='form-registration')
-          input(type='hidden' name='_id' value=`${task._id}`)
-          button(class='btn btn-danger btn-sm mx-1') Delete
+      div(class='col-sm-1') #{pet.id}
+      div(class='col-sm-2') #{pet.name}
+      div(class='col-sm-2') #{pet.species}
+      div(class='col-sm-2') #{pet.breed}
+      div(class='col-sm-2') #{format(pet.birthday, "yyyy-MM-dd")}
+      div(class='col-sm-2') #{pet.gender}
+      div(class='col-sm-1')
+        // Форма для удаления питомца
+        form(action=`/pet/${pet.id}`, method='POST', class='form-registration')
+          input(type='hidden' name='_method' value='DELETE')
+          button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
 
-  h5(class='my-2') Completed tasks
+  // Форма добавления нового владельца
+  form(action='/owner', method='POST', class='form-registration')
+    div(class='row my-3')
+      div(class='col-md-2 align-bottom')
+        label(for="ownerName", class='fs-5') New Owner
+      div(class='col-md-8')
+        input(class="form-control form-control-sm", type="text", name='ownerName', placeholder="Enter new owner name here" )
+      div(class='col-md-2 text-end')
+        button(class='btn btn-success btn-sm', type='submit') Add Owner
+
+  // Заголовок и таблица для модели Owner
+  h5(class='my-2') Owner Information
   div(class='row mb-3 border-bottom border-3')
-    div(class='col-sm-8 fw-bold') Task
-    div(class='col-sm-2 fw-bold') Created
-    div(class='col-sm-2 fw-bold') Completed
-  each task in completedTasks
-    div(class='row mb-3')
-      div(class='col-sm-8') #{task.taskName}
-      div(class='col-sm-2') #{format(task.createDate, "yyyy-MM-dd")}
-      div(class='col-sm-2') #{format(task.completedDate, "yyyy-MM-dd")}
+    div(class='col-md-1 fw-bold') ID
+    div(class='col-md-3 fw-bold') Name
+    div(class='col-md-3 fw-bold') Email
+    div(class='col-md-3 fw-bold') Phone
+    div(class='col-md-2 fw-bold') Actions
+  each owner in owners
+    div(class='row mb-2')
+      div(class='col-sm-1') #{owner.id}
+      div(class='col-sm-3') #{owner.name}
+      div(class='col-sm-3') #{owner.email}
+      div(class='col-sm-3') #{owner.phone}
+      div(class='col-sm-2')
+        // Форма для удаления владельца
+        form(action=`/owner/${owner.id}`, method='POST', class='form-registration')
+          input(type='hidden' name='_method' value='DELETE')
+          button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
+
+  // Форма добавления новой медицинской записи
+  form(action='./medicalRecord', method='POST', class='form-registration')
+    div(class='row my-3')
+      div(class='col-md-2 align-bottom')
+        label(for="medicalRecordDiagnosis", class='fs-5') New Medical Record
+      div(class='col-md-3')
+        input(class="form-control form-control-sm", type="text", name='medicalRecordDiagnosis', placeholder="Enter diagnosis" )
+      div(class='col-md-3')
+        input(class="form-control form-control-sm", type="text", name='medicalRecordMedications', placeholder="Enter medications" )
+      div(class='col-md-2')
+        input(class="form-control form-control-sm", type="date", name='medicalRecordVisitDate', placeholder="Enter visit date" )
+      div(class='col-md-2 text-end')
+        button(class='btn btn-success btn-sm', type='submit') Add Medical Record
+
+  // Заголовок и таблица для модели MedicalRecord
+  h5(class='my-2') Medical Record Information
+  div(class='row mb-3 border-bottom border-3')
+    div(class='col-md-1 fw-bold') ID
+    div(class='col-md-2 fw-bold') Pet ID
+    div(class='col-md-3 fw-bold') Diagnosis
+    div(class='col-md-3 fw-bold') Medications
+    div(class='col-md-2 fw-bold') Visit Date
+    div(class='col-md-1 fw-bold') Actions
+  each medicalRecord in medicalRecords
+    div(class='row mb-2')
+      div(class='col-sm-1') #{medicalRecord.id}
+      div(class='col-sm-2') #{medicalRecord.petId}
+      div(class='col-sm-3') #{medicalRecord.diagnosis}
+      div(class='col-sm-3') #{medicalRecord.medications}
+      div(class='col-sm-2') #{format(medicalRecord.visitDate, "yyyy-MM-dd")}
+      div(class='col-sm-1')
+        form(action=`./medicalRecord/${medicalRecord.id}`, method='POST', class='form-registration')
+          input(type='hidden' name='_method' value='DELETE')
+          button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
+
+  // Добавьте аналогичные блоки для остальных мод

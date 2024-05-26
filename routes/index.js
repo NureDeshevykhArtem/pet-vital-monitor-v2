@@ -3,20 +3,37 @@ var Task = require('../models/task');
 
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  Task.find()
-    .then((tasks) => {      
-      const currentTasks = tasks.filter(task => !task.completed);
-      const completedTasks = tasks.filter(task => task.completed === true);
+const {Pet, Owner, Report, MedicalRecord, ActivityTable, ActivityType, Admin, Specialization, Veterinarian} = require("../models/models");
 
-      console.log(`Total tasks: ${tasks.length}   Current tasks: ${currentTasks.length}    Completed tasks:  ${completedTasks.length}`)
-      res.render('index', { currentTasks: currentTasks, completedTasks: completedTasks });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send('Sorry! Something went wrong.');
-    });
+/* GET home page. */
+router.get('/', async function(req, res, next) {
+    try {
+        const pets = await Pet.find();
+        const owners = await Owner.find();
+        const medicalRecords = await MedicalRecord.find();
+        const activityTables = await ActivityTable.find();
+        const activityTypes = await ActivityType.find();
+        const admins = await Admin.find();
+        const reports = await Report.find();
+        const specializations = await Specialization.find();
+        const veterinarians = await Veterinarian.find();
+
+        // Рендер страницы, когда все данные получены
+        res.render('index', {
+            pets,
+            owners,
+            medicalRecords,
+            activityTables,
+            activityTypes,
+            admins,
+            reports,
+            specializations,
+            veterinarians
+        });
+    } catch (err) {
+        console.error(err);
+        res.send('Sorry! Something went wrong.');
+    }
 });
 
 router.post('/addTask', function(req, res, next) {
