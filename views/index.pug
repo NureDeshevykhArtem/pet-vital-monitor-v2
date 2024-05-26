@@ -75,16 +75,16 @@ block content
     div(class='col-md-3 fw-bold') Email
     div(class='col-md-3 fw-bold') Phone
     div(class='col-md-2 fw-bold') Actions
-      each owner in owners
-        div(class='row mb-2')
-          div(class='col-sm-1') #{owner.id}
-          div(class='col-sm-3') #{owner.name}
-          div(class='col-sm-3') #{owner.email}
-          div(class='col-sm-3') #{owner.phone}
-          div(class='col-sm-2')
-            form(action=`/owner/${owner.id}`, method='POST', class='form-registration')
-              input(type='hidden' name='_method' value='DELETE')
-              button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
+  each owner in owners
+    div(class='row mb-2')
+      div(class='col-sm-1') #{owner.id}
+      div(class='col-sm-3') #{owner.name}
+      div(class='col-sm-3') #{owner.email}
+      div(class='col-sm-3') #{owner.phone}
+      div(class='col-sm-2')
+        form(action=`/owner/${owner.id}`, method='POST', class='form-registration')
+          input(type='hidden' name='_method' value='DELETE')
+          button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
 
       // Форма добавления новой медицинской записи
       form(action='./medicalRecord', method='POST', class='form-registration')
@@ -101,23 +101,23 @@ block content
           div(class='col-md-3 text-end')
             button(class='btn btn-success btn-sm', type='submit') Add Medical Record
 
-      // Заголовок и таблица для модели MedicalRecord
-      h5(class='my-2') Medical Record Information
-      div(class='row mb-3 border-bottom border-3')
-        div(class='col-md-1 fw-bold') ID
-        div(class='col-md-2 fw-bold') Pet ID
-        div(class='col-md-3 fw-bold') Diagnosis
-        div(class='col-md-3 fw-bold') Medications
-        div(class='col-md-2 fw-bold') Visit Date
-        div(class='col-md-1 fw-bold') Actions
-      each medicalRecord in medicalRecords
-        div(class='row mb-2')
-          div(class='col-sm-1') #{medicalRecord.id}
-          div(class='col-sm-2') #{medicalRecord.petId}
-          div(class='col-sm-3') #{medicalRecord.diagnosis}
-          div(class='col-sm-3') #{medicalRecord.medications}
-          div(class='col-sm-2') #{format(medicalRecord.visitDate, "yyyy-MM-dd")}
-          div(class='col-sm-1')
-            form(action=`/medicalRecord/${medicalRecord.id}`, method='POST', class='form-registration')
-              input(type='hidden' name='_method' value='DELETE')
-              button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
+    // Заголовок и таблица для модели MedicalRecord
+    h5(class='my-2') Medical Record Information
+    div(class='row mb-3 border-bottom border-3')
+      div(class='col-md-1 fw-bold') ID
+      div(class='col-md-2 fw-bold') Pet ID
+      div(class='col-md-3 fw-bold') Diagnosis
+      div(class='col-md-3 fw-bold') Medications
+      div(class='col-md-2 fw-bold') Visit Date
+      div(class='col-md-1 fw-bold') Actions
+    each medicalRecord in medicalRecords
+      div(class='row mb-2')
+        div(class='col-sm-1') #{medicalRecord.id}
+        div(class='col-sm-2') #{medicalRecord.petId}
+        div(class='col-sm-3') #{medicalRecord.diagnosis}
+        div(class='col-sm-3') #{medicalRecord.medications}
+        div(class='col-sm-2') #{format(medicalRecord.visitDate, "yyyy-MM-dd")}
+        div(class='col-sm-1')
+          form(action=`/medicalRecord/${medicalRecord.id}`, method='POST', class='form-registration')
+            input(type='hidden' name='_method' value='DELETE')
+            button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
