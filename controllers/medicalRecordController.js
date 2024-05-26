@@ -1,4 +1,4 @@
-const MedicalRecord = require('models/models').MedicalRecord;
+const {MedicalRecord} = require("../models/models");
 
 // Create a new MedicalRecord
 const createMedicalRecord = async (req, res) => {

@@ -1,4 +1,4 @@
-const Pet = require('models/models').Pet;
+const {Pet} = require("../models/models");
 
 // Create a new Pet
 const createPet = async (req, res) => {

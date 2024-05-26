@@ -1,6 +1,5 @@
-const Report = require('models/models').Report;
+const { Report } = require('../models/models');
 
-// Create a new Report
 const createReport = async (req, res) => {
     try {
         const report = new Report(req.body);

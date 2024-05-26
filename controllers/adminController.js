@@ -1,4 +1,4 @@
-const Admin = require('models/models').Admin;
+const {Admin} = require("../models/models");
 
 // Create a new Admin
 const createAdmin = async (req, res) => {

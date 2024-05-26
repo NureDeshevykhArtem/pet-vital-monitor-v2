@@ -1,4 +1,4 @@
-const ActivityTable = require('models/models').ActivityTable;
+const {ActivityTable} = require("../models/models");
 
 // Create a new ActivityTable
 const createActivityTable = async (req, res) => {

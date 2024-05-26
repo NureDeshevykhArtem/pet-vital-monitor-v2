@@ -1,4 +1,4 @@
-const ActivityType = require('models/models').ActivityType;
+const {ActivityType} = require("../models/models");
 
 // Create a new ActivityType
 const createActivityType = async (req, res) => {

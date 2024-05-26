@@ -1,4 +1,4 @@
-const Specialization = require('models/models').Specialization;
+const {Specialization} = require("../models/models");
 
 // Create a new Specialization
 const createSpecialization = async (req, res) => {

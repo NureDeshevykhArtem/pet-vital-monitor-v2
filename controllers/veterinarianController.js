@@ -1,4 +1,4 @@
-const Veterinarian = require('models/models').Veterinarian;
+const {Veterinarian} = require("../models/models");
 
 // Create a new Veterinarian
 const createVeterinarian = async (req, res) => {

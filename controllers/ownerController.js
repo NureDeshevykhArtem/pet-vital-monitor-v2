@@ -1,4 +1,4 @@
-const Owner = require('models/models').Owner;
+const {Owner} = require("../models/models");
 
 // Create a new Owner
 const createOwner = async (req, res) => {
