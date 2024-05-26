@@ -98,14 +98,14 @@ block content
     div(class='col-md-3 fw-bold') Medications
     div(class='col-md-2 fw-bold') Visit Date
     div(class='col-md-1 fw-bold') Actions
-each medicalRecord in medicalRecords
-  div(class='row mb-2')
-    div(class='col-sm-1') #{medicalRecord.id}
-    div(class='col-sm-2') #{medicalRecord.petId}
-    div(class='col-sm-3') #{medicalRecord.diagnosis}
-    div(class='col-sm-3') #{medicalRecord.medications}
-    div(class='col-sm-2') #{format(medicalRecord.visitDate, "yyyy-MM-dd")}
-    div(class='col-sm-1')
-      form(action=`/medicalRecord/${medicalRecord.id}`, method='POST', class='form-registration')
-        input(type='hidden' name='_method' value='DELETE')
-        button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
+  each medicalRecord in medicalRecords
+    div(class='row mb-2')
+      div(class='col-sm-1') #{medicalRecord.id}
+      div(class='col-sm-2') #{medicalRecord.petId}
+      div(class='col-sm-3') #{medicalRecord.diagnosis}
+      div(class='col-sm-3') #{medicalRecord.medications}
+      div(class='col-sm-2') #{format(medicalRecord.visitDate, "yyyy-MM-dd")}
+      div(class='col-sm-1')
+        form(action=`/medicalRecord/${medicalRecord.id}`, method='POST', class='form-registration')
+          input(type='hidden' name='_method' value='DELETE')
+          button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
