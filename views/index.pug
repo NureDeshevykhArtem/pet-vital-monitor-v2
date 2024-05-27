@@ -26,7 +26,7 @@ block content
       div(class='col-md-3 align-bottom')
         label(for="owner", class='fs-5') Owner
         input(class="form-control form-control-sm", type="text", name='owner', placeholder="Enter owner" )
-      div(class='col-md-3 text-end mt-5')
+      div(class='col-md-3 text-end mt-4')
         button(class='btn btn-success btn-sm', type='submit') Add Pet
 
   // Заголовок и таблица для модели Pet
@@ -48,8 +48,8 @@ block content
       div(class='col-sm-2') #{format(pet.birthday, "yyyy-MM-dd")}
       div(class='col-sm-2') #{pet.gender}
       div(class='col-sm-1')
-        form(action=`/pet/${pet.id}`, method='DELETE', class='form-registration')
-          input(type='hidden' name='_method' value='POST')
+        form(action='/deletePet', method='POST', class='form-registration')
+          input(type='hidden', name='id', value=`${pet.id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
 
   // Форма добавления нового владельца
@@ -70,7 +70,7 @@ block content
       div(class='col-md-3 align-bottom')
         label(for="address", class='fs-5') Address
         input(class="form-control form-control-sm", type="text", name='address', placeholder="Enter address" )
-      div(class='col-md-3 text-end mt-5')
+      div(class='col-md-3 text-end mt-4')
         button(class='btn btn-success btn-sm', type='submit') Add Owner
 
   // Заголовок и таблица для модели Owner
@@ -88,8 +88,8 @@ block content
       div(class='col-sm-3') #{owner.email}
       div(class='col-sm-3') #{owner.phone}
       div(class='col-sm-2')
-        form(action=`/owner/${owner.id}`, method='DELETE', class='form-registration')
-          input(type='hidden' name='_method' value='POST')
+        form(action='/deleteOwner', method='POST', class='form-registration')
+          input(type='hidden', name='id', value=`${owner.id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
 
   // Форма добавления новой медицинской записи
@@ -110,7 +110,7 @@ block content
       div(class='col-md-3 align-bottom')
         label(for="pet", class='fs-5') Pet
         input(class="form-control form-control-sm", type="text", name='pet', placeholder="Enter pet" )
-      div(class='col-md-3 text-end mt-5')
+      div(class='col-md-3 text-end mt-4')
         button(class='btn btn-success btn-sm', type='submit') Add Medical Record
 
   // Заголовок и таблица для модели MedicalRecord
@@ -130,6 +130,6 @@ block content
       div(class='col-sm-3') #{medicalRecord.medications}
       div(class='col-sm-2') #{format(medicalRecord.visitDate, "yyyy-MM-dd")}
       div(class='col-sm-1')
-        form(action=`/medicalRecord/${medicalRecord.id}`, method='DELETE', class='form-registration')
-          input(type='hidden' name='_method' value='POST')
+        form(action='/deleteMedicalRecord', method='POST', class='form-registration')
+          input(type='hidden', name='id', value=`${medicalRecord.id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete

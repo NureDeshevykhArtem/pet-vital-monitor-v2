@@ -50,7 +50,7 @@ const updateActivityTable = async (req, res) => {
 // Delete an ActivityTable by ID
 const deleteActivityTable = async (req, res) => {
     try {
-        const activityTable = await ActivityTable.findByIdAndDelete(req.params.id);
+        const activityTable = await ActivityTable.findByIdAndDelete(req.body.id);
         if (!activityTable) {
             return res.status(404).json({ error: 'ActivityTable not found' });
         }
