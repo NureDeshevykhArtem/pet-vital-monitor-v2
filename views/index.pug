@@ -2,7 +2,6 @@ extends layout
 
 block content
 
-  // Форма добавления нового питомца
   form(action='/pet', method='POST', class='form-registration')
     div(class='row my-3')
       div(class='col-md-3 align-bottom')
@@ -29,7 +28,6 @@ block content
       div(class='col-md-3 text-end mt-4')
         button(class='btn btn-success btn-sm', type='submit') Add Pet
 
-  // Заголовок и таблица для модели Pet
   h5(class='my-2') Pet Information
   div(class='row mb-3 border-bottom border-3')
     div(class='col-md-1 fw-bold') ID
@@ -49,10 +47,9 @@ block content
       div(class='col-sm-2') #{pet.gender}
       div(class='col-sm-1')
         form(action='./deletePet', method='POST', class='form-registration')
-          input(type='hidden', name='_id', value=`${pet.id}`)
+          input(type='hidden', name='_id', value=`${pet._id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
 
-  // Форма добавления нового владельца
   form(action='/owner', method='POST', class='form-registration')
     div(class='row my-3')
       div(class='col-md-3 align-bottom')
@@ -73,7 +70,6 @@ block content
       div(class='col-md-3 text-end mt-4')
         button(class='btn btn-success btn-sm', type='submit') Add Owner
 
-  // Заголовок и таблица для модели Owner
   h5(class='my-2') Owner Information
   div(class='row mb-3 border-bottom border-3')
     div(class='col-md-1 fw-bold') ID
@@ -89,10 +85,9 @@ block content
       div(class='col-sm-3') #{owner.phone}
       div(class='col-sm-2')
         form(action='./deleteOwner', method='POST', class='form-registration')
-          input(type='hidden', name='_id', value=`${owner.id}`)
+          input(type='hidden', name='_id', value=`${owner._id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
 
-  // Форма добавления новой медицинской записи
   form(action='./medicalRecord', method='POST', class='form-registration')
     div(class='row my-3')
       div(class='col-md-3 align-bottom')
@@ -113,7 +108,6 @@ block content
       div(class='col-md-3 text-end mt-4')
         button(class='btn btn-success btn-sm', type='submit') Add Medical Record
 
-  // Заголовок и таблица для модели MedicalRecord
   h5(class='my-2') Medical Record Information
   div(class='row mb-3 border-bottom border-3')
     div(class='col-md-1 fw-bold') ID
@@ -131,5 +125,26 @@ block content
       div(class='col-sm-2') #{format(medicalRecord.visitDate, "yyyy-MM-dd")}
       div(class='col-sm-1')
         form(action='./deleteMedicalRecord', method='POST', class='form-registration')
-          input(type='hidden', name='_id', value=`${medicalRecord.id}`)
+          input(type='hidden', name='_id', value=`${medicalRecord._id}`)
+          button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
+
+  form(action='/specialization', method='POST', class='form-registration')
+    div(class='row my-3')
+      div(class='col-md-3 align-bottom')
+        label(for="name", class='fs-5') Name
+        input(class="form-control form-control-sm", type="text", name='name', placeholder="Enter pet name" )
+      div(class='col-md-3 text-end mt-4')
+        button(class='btn btn-success btn-sm', type='submit') Add Specialization
+
+  h5(class='my-2') Specializations information
+  div(class='row mb-3 border-bottom border-3')
+    div(class='col-md-1 fw-bold') ID
+    div(class='col-md-2 fw-bold') Name
+  each specialization in specializations
+    div(class='row mb-2')
+      div(class='col-sm-1') #{specialization.id}
+      div(class='col-sm-2') #{specialization.name}
+      div(class='col-sm-1')
+        form(action='./deleteSpecialization', method='POST', class='form-registration')
+          input(type='hidden', name='_id', value=`${specialization._id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
