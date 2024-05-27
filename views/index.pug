@@ -48,8 +48,8 @@ block content
       div(class='col-sm-2') #{format(pet.birthday, "yyyy-MM-dd")}
       div(class='col-sm-2') #{pet.gender}
       div(class='col-sm-1')
-        form(action='/deletePet', method='POST', class='form-registration')
-          input(type='hidden', name='id', value=`${pet.id}`)
+        form(action='./deletePet', method='POST', class='form-registration')
+          input(type='hidden', name='_id', value=`${pet.id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
 
   // Форма добавления нового владельца
@@ -88,8 +88,8 @@ block content
       div(class='col-sm-3') #{owner.email}
       div(class='col-sm-3') #{owner.phone}
       div(class='col-sm-2')
-        form(action='/deleteOwner', method='POST', class='form-registration')
-          input(type='hidden', name='id', value=`${owner.id}`)
+        form(action='./deleteOwner', method='POST', class='form-registration')
+          input(type='hidden', name='_id', value=`${owner.id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
 
   // Форма добавления новой медицинской записи
@@ -130,6 +130,6 @@ block content
       div(class='col-sm-3') #{medicalRecord.medications}
       div(class='col-sm-2') #{format(medicalRecord.visitDate, "yyyy-MM-dd")}
       div(class='col-sm-1')
-        form(action='/deleteMedicalRecord', method='POST', class='form-registration')
-          input(type='hidden', name='id', value=`${medicalRecord.id}`)
+        form(action='./deleteMedicalRecord', method='POST', class='form-registration')
+          input(type='hidden', name='_id', value=`${medicalRecord.id}`)
           button(class='btn btn-danger btn-sm mx-1', type='submit') Delete
